@@ -15,17 +15,20 @@ if (isset($_POST['connexion'])){
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $pwd = htmlspecialchars($_POST['pwd']);
 
-        $pwd2 = sha1($pwd);
+        $pwd2 = sha1($_POST['pwd']);
         $requser = $bdd ->prepare("SELECT * FROM table_users WHERE pseudo = ? AND motdepasse = ?");
         $requser ->execute(array($pseudo, $pwd2));
         $userexist = $requser->rowCount();
 
+
         if($userexist == 1){
             $userinfo = $requser->fetch();
-
+            session_start();
             $_SESSION['id'] = $userinfo['id'];
             $_SESSION['name'] = $userinfo['pseudo'];
 
+            setcookie('login', $_SESSION["name"], time() + 24*3600, null, null, false, true);
+            setcookie('PHPSESSID', '', time() + - 86400, '/user/', null, false, true);
             header("Location: profile.php");
 
         }else{
@@ -58,7 +61,7 @@ if (isset($_POST['connexion'])){
 
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand">Denver's Dev</a>
+            <a class="navbar-brand" href="/">Denver's Dev</a>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Rechercher</button>

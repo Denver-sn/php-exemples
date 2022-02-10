@@ -67,7 +67,8 @@ if (isset($_POST['inscription']))
 
     <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand">Denver's Dev</a>
+        <a class="navbar-brand" href="/">Denver's Dev</a>
+        <a class="navbar-brand" href="login.php">Connexion</a>
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Rechercher</button>

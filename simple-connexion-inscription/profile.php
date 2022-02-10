@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION['pseudo']))
+if (empty($_SESSION['name']))
 {
     header("Location: login.php");
 
@@ -46,7 +46,7 @@ if (empty($_SESSION['pseudo']))
                         <a class="nav-link active" aria-current="page"  href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Deconnexion</a>
+                        <a class="nav-link " href="logout.php">Deconnexion</a>
                     </li>
                 </ul>
 
@@ -66,11 +66,11 @@ if (empty($_SESSION['pseudo']))
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Message de Bienvenue</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   Bienvenue <?= $_SESSION['pseudo']; ?>
+                   Bienvenue <?= $_SESSION['name']; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
